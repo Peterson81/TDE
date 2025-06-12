@@ -1,0 +1,71 @@
+package exercicios;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        AutomovelManager manager = new AutomovelManager();
+        int opcao;
+
+        do {
+            System.out.println("\nMenu:");
+            System.out.println("1 - Incluir automóvel");
+            System.out.println("2 - Remover automóvel");
+            System.out.println("3 - Alterar dados de automóvel");
+            System.out.println("4 - Consultar automóvel por placa");
+            System.out.println("5 - Listar automóveis (ordenado)");
+            System.out.println("6 - Salvar e sair");
+            System.out.print("Escolha uma opção: ");
+            opcao = Integer.parseInt(scanner.nextLine());
+
+            switch (opcao) {
+                case 1:
+                    System.out.print("Placa: ");
+                    String placa = scanner.nextLine();
+                    System.out.print("Modelo: ");
+                    String modelo = scanner.nextLine();
+                    System.out.print("Marca: ");
+                    String marca = scanner.nextLine();
+                    System.out.print("Ano: ");
+                    int ano = Integer.parseInt(scanner.nextLine());
+                    System.out.print("Valor: ");
+                    double valor = Double.parseDouble(scanner.nextLine());
+                    manager.inserirAutomovel(new Automovel(placa, modelo, marca, ano, valor));
+                    break;
+                case 2:
+                    System.out.print("Informe a placa: ");
+                    manager.removerAutomovel(scanner.nextLine());
+                    break;
+                case 3:
+                    System.out.print("Placa: ");
+                    placa = scanner.nextLine();
+                    System.out.print("Novo modelo: ");
+                    modelo = scanner.nextLine();
+                    System.out.print("Nova marca: ");
+                    marca = scanner.nextLine();
+                    System.out.print("Novo ano: ");
+                    ano = Integer.parseInt(scanner.nextLine());
+                    System.out.print("Novo valor: ");
+                    valor = Double.parseDouble(scanner.nextLine());
+                    manager.alterarAutomovel(placa, modelo, marca, ano, valor);
+                    break;
+                case 4:
+                    System.out.print("Informe a placa: ");
+                    manager.consultarAutomovel(scanner.nextLine());
+                    break;
+                case 5:
+                    System.out.print("Ordenar por (placa/modelo/marca): ");
+                    manager.listarAutomoveis(scanner.nextLine());
+                    break;
+                case 6:
+                    manager.salvarDados();
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
+            }
+        } while (opcao != 6);
+
+        scanner.close();
+    }
+}
+
